@@ -12,12 +12,12 @@ public class ReorderDataInLogFiles_937 {
 	
 	
 	
-	// Time Complexity = O(NlogN M)
+	// Time Complexity = O(M NlogN)
 	// Space Complexity = O(M logN)
 	public String[] reorderLogFiles(String[] logs) {
 		
 		// Comparator idea - custom sorting
-		// if 1 => swap
+		// if 1  => swap
 		// if -1 => no swap
 		
 		
@@ -25,7 +25,8 @@ public class ReorderDataInLogFiles_937 {
 			
 			@Override
 			public int compare(String log1, String log2) {
-				String logArr1[] = log1.split(" ", 2);
+				// Split the identifier from the contents of the log
+				String logArr1[] = log1.split(" ", 2); // [identifier, contents]
 				String logArr2[] = log2.split(" ", 2);
 				
 				boolean isDigit1 = Character.isDigit(logArr1[1].charAt(0));

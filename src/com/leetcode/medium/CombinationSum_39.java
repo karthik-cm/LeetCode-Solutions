@@ -14,26 +14,26 @@ public class CombinationSum_39 {
 		System.out.println(combinationSum(candidates, target));
 	}
 	
-	public static List<List<Integer>> combinationSum(int[] candidates, int target) {
-        List<List<Integer>> finalList= new ArrayList<>();
-        dfs(0, target, 0, candidates, new ArrayList<Integer>(), finalList);
-        return finalList;
-    }
-    
 	
-	// Backtracking - DFS
-    public static void dfs(int start, int target, int sum, int candidates[], List<Integer> list, List<List<Integer>> finalList){
+	// Backtracking
+	public static List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> result = new ArrayList<>();
+        backtrack(0, 0, target, candidates, new ArrayList<Integer>(), result);
+        return result;
+    }
+	
+    public static void backtrack(int start, int sum, int target, int candidates[], List<Integer> list, List<List<Integer>> result){
         if(sum == target){
-            finalList.add(new ArrayList<Integer>(list));
+            result.add(new ArrayList<Integer>(list));
             return;
         }
         
         for(int i=start; i<candidates.length && sum<=target; i++){
             sum += candidates[i];
             list.add(candidates[i]);
-            dfs(i, target, sum, candidates, list, finalList);
-            sum -= candidates[i];
+            backtrack(i, sum, target, candidates, list, result);
             list.remove(list.size()-1);
+            sum -= candidates[i];
         }
     }
     

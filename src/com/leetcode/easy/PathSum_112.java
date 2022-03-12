@@ -7,12 +7,11 @@ public class PathSum_112 {
 	}
 	
 	
-	// DFS
 	boolean flag = false;
 	
+	// DFS
 	public boolean hasPathSum(TreeNode root, int targetSum) {
-		int sum = 0;
-		dfs(root, sum, targetSum);
+		dfs(root, 0, targetSum);
 		return flag;
     }
 
@@ -35,21 +34,4 @@ public class PathSum_112 {
 		return root;
 	}
 	
-	
-	
-	
-	
-	/*public boolean hasPathSum(TreeNode root, int targetSum) {
-        if(root == null) {
-        	return false;
-        }
-        
-        if(root.left == null && root.right == null && targetSum-root.val == 0) {
-        	return true;
-        }
-        else {
-        	return hasPathSum(root.left, targetSum-root.val) || hasPathSum(root.right, targetSum-root.val);
-        }
-    }*/
-
 }

@@ -4,10 +4,10 @@ public class NumberOfIslands_200 {
 
 	public static void main(String[] args) {
 		char[][] grid = {
-				{'1','1','1','1','0'},
-				{'1','1','0','1','0'},
-				{'1','1','0','0','0'},
-				{'0','0','0','0','0'}
+			{'1','1','1','1','0'},
+			{'1','1','0','1','0'},
+			{'1','1','0','0','0'},
+			{'0','0','0','0','0'}
 		};
 		
 		System.out.println(numIslands(grid));
@@ -15,19 +15,21 @@ public class NumberOfIslands_200 {
 	
 	
 	// BFS - Flood fill algorithm
+	// Time Complexity : O(M.N)
+	// Space Complexity : O(1)) 
 	public static int numIslands(char[][] grid) {
-        int count = 0;
+        int numOfIslands = 0;
         
         for(int i=0; i<grid.length; i++) {
         	for(int j=0; j<grid[i].length; j++) {
         		if(grid[i][j] == '1') {
-        			count++;
+        			numOfIslands += 1;
         			bfs(grid, i, j);
         		}
         	}
         }
         
-        return count;
+        return numOfIslands;
     }
 
 

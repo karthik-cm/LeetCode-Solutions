@@ -21,6 +21,7 @@ public class Permutations_46 {
 	private static void backtrack(int[] nums, ArrayList<Integer> list, List<List<Integer>> result) {
 		if(list.size() == nums.length) {
 			result.add(new ArrayList<>(list));
+			return;
 		}
 		
 		for(int i=0; i<nums.length; i++) {
@@ -28,9 +29,9 @@ public class Permutations_46 {
 				continue;
 			}
 			
-			list.add(nums[i]);
-			backtrack(nums, list, result);
-			list.remove(list.size()-1);
+			list.add(nums[i]); // add
+			backtrack(nums, list, result); // backtrack
+			list.remove(list.size()-1); // remove
 		}
 	}
 	

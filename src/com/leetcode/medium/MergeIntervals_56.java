@@ -12,6 +12,7 @@ public class MergeIntervals_56 {
 		System.out.println(merge(intervals));
 	}
 	
+	
 	public static int[][] merge(int[][] intervals) {
         if(intervals.length <= 1) {
 			return intervals;
@@ -20,9 +21,9 @@ public class MergeIntervals_56 {
 		// Sort 2D array based on the first index - arr[0]
 		Arrays.sort(intervals, (arr1, arr2) -> Integer.compare(arr1[0], arr2[0]));
 		
-		List<int[]> list = new ArrayList<>();
+		List<int[]> result = new ArrayList<>();
 		int curr[] = intervals[0];
-		list.add(curr);
+		result.add(curr);
 		
 		for(int[] next : intervals) {
 			// int curr_begin = curr[0];
@@ -35,11 +36,11 @@ public class MergeIntervals_56 {
 			}
 			else {
 				curr = next;
-				list.add(curr);
+				result.add(curr);
 			}
 		}
 		
-		return list.toArray(new int[list.size()][]);
+		return result.toArray(new int[result.size()][]);
     }
 
 }

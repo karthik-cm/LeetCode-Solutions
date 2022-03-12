@@ -6,7 +6,7 @@ public class ValidMountainArray_941 {
 		
 	}
 	
-	// Super 
+	
 	public boolean validMountainArray(int[] arr) {
         int len = arr.length;
         int i = 0;

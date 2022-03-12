@@ -11,6 +11,8 @@ public class BinaryTreeLevelOrderTraversal_102 {
 	}
 	
 	
+	// TC - O(N)
+	// SC - O(N)
 	public List<List<Integer>> levelOrder(TreeNode root) {
 		List<List<Integer>> list = new ArrayList<>();
 		
@@ -19,7 +21,7 @@ public class BinaryTreeLevelOrderTraversal_102 {
 		}
 		
 		// Queue<TreeNode> queue = new PriorityQueue<>(); // This cannot be used as it handles only int type - Min Heap
-		LinkedList<TreeNode> queue = new LinkedList<>();
+		LinkedList<TreeNode> queue = new LinkedList<>(); // In Java LinkedList acts as both Queue & Stack
 		queue.add(root);
 		
 		while(queue.size() > 0) {

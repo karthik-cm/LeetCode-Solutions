@@ -1,5 +1,8 @@
 package com.leetcode.easy;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class IntersectionOfTwoLinkedLists_160 {
 
 	public static void main(String[] args) {
@@ -8,6 +11,28 @@ public class IntersectionOfTwoLinkedLists_160 {
 	
 	
 	public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        Set<ListNode> nodesInB = new HashSet<>();
+
+        while (headB != null) {
+            nodesInB.add(headB);
+            headB = headB.next;
+        }
+
+        while (headA != null) {
+            // if we find the node pointed to by headA,
+            // in our set containing nodes of B, then return the node
+            if (nodesInB.contains(headA)) {
+                return headA;
+            }
+            
+            headA = headA.next;
+        }
+
+        return null;
+    }
+	
+	
+	/*public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         if(headA == null || headB == null){
             return null;
         }
@@ -20,6 +45,6 @@ public class IntersectionOfTwoLinkedLists_160 {
         }
         
         return a;
-    }
+    }*/
 
 }

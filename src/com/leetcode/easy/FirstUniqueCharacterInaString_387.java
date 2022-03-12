@@ -3,7 +3,8 @@ package com.leetcode.easy;
 public class FirstUniqueCharacterInaString_387 {
 
 	public static void main(String[] args) {
-		String s = "leetcode";
+		// String s = "leetcode";
+		String s = "loveleetcode";
 		
 		System.out.println(firstUniqChar(s));
 	}
@@ -29,6 +30,7 @@ public class FirstUniqueCharacterInaString_387 {
         
         return -1;
     }
+	
 	
 //	public static int firstUniqChar(String s) {
 //		HashMap<Character, Integer> map = new HashMap<>();

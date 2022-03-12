@@ -23,18 +23,21 @@ public class GroupAnagrams_49 {
 	each value is the list of strings from the initial input that when sorted, are equal to 'K' */
 	
 	
+	
+	// Time Complexity : O(NK logK)
+	// Space Complexity : O(NK)
 	public List<List<String>> groupAnagrams(String[] strs) {
 		if(strs.length == 0) {
 			return new ArrayList<>();
 		}
 		
-        Map<String, List<String>> map = new HashMap<>(); // {abc, [bac, cab]}
+        Map<String, List<String>> map = new HashMap<>(); // {abc, [bac, cab, cba]}
         
         for(String s : strs) {
-            char cArr[] = s.toCharArray();
-            Arrays.sort(cArr);
+            char charArr[] = s.toCharArray();
+            Arrays.sort(charArr); // O(K logK)
             
-            String key = String.valueOf(cArr);
+            String key = String.valueOf(charArr);
             
             if(!map.containsKey(key)) {
             	map.put(key, new ArrayList<>());

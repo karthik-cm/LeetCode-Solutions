@@ -12,7 +12,7 @@ public class TwoSum_1 {
 	// Brute Force
 	// Time complexity : O(n^2)
 	// Space complexity : O(1)
-	public int[] twoSum(int[] nums, int target) {
+	/*public int[] twoSum(int[] nums, int target) {
 	    for(int i=0; i<nums.length; i++) {
 	        for(int j=i+1; j<nums.length; j++) {
 	            if(nums[i] + nums[j] == target) {
@@ -22,11 +22,13 @@ public class TwoSum_1 {
 	    }
 	    
 	    throw new IllegalArgumentException("No two sum solution");
-	}
+	}*/
 	
 	
 	// Memoization
-	public int[] twoSum(int[] nums, int target, int target2) {
+	// Time complexity : O(n)
+	// Space complexity : O(n)
+	public int[] twoSum(int[] nums, int target) {
 	    Map<Integer, Integer> map = new HashMap<>();
 	    
 	    for(int i=0; i<nums.length; i++) {
