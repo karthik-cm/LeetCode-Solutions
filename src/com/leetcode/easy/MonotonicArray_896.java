@@ -7,24 +7,20 @@ public class MonotonicArray_896 {
 	}
 	
 	public boolean isMonotonic(int[] nums) {
-        boolean isIncreasing = (nums[nums.length - 1] >= nums[0]) ? true : false;
-        int curr = nums[0];
-        int next;
+		boolean increasing = true;
+        boolean decreasing = true;
         
-        for(int i=1; i<nums.length; i++){
-            next = nums[i];
+        for(int i = 0; i < nums.length - 1; i++){
+            if(nums[i] > nums[i + 1]){
+                increasing = false;
+            }
             
-            if(isIncreasing && next<curr){
-            	return false;
+            if(nums[i] < nums[i + 1]){
+                decreasing = false;
             }
-            else if(!isIncreasing && next>curr){
-            	return false;
-            }
-               
-            curr = next;
         }
         
-        return true;
+        return increasing || decreasing;
     }
 
 }

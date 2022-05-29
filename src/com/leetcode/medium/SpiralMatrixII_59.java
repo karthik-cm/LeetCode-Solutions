@@ -1,7 +1,5 @@
 package com.leetcode.medium;
 
-import java.util.Arrays;
-
 public class SpiralMatrixII_59 {
 
 	public static void main(String[] args) {
@@ -11,53 +9,57 @@ public class SpiralMatrixII_59 {
 	}
 	
 	
-	// nxn matrix
+	// T.C = O(n^2)
+	// S.C = O(1) - exclude matrix result[][]
 	public static int[][] generateMatrix(int n) {
-		int[][] matrix = new int[n][n];
-		int num = 1;
-		int numSq = n*n; 
-		
-		int rowBegin = 0;
-		int rowEnd = n-1;
-		int colBegin = 0;
-		int colEnd = n-1;
-		
-		while(num <= numSq) {
-			for(int i=colBegin; i<=colEnd; i++) {
-				matrix[rowBegin][i] = num++;
-			}
-			rowBegin++;
-			
-			for(int i=rowBegin; i<=rowEnd; i++) {
-				matrix[i][colEnd] = num++;
-			}
-			colEnd--;
-			
-			if(num <= numSq) {
-				for(int i=colEnd; i>=colBegin; i--) {
-					matrix[rowEnd][i] = num++;
-				}
-				rowEnd--;
-			}
-			
-			if(num <= numSq) {
-				for(int i=rowEnd; i>=rowBegin; i--) {
-					matrix[i][colBegin] = num++;
-				}
-				colBegin++;
-			}
-		}
-		
-		print(matrix);
-		
-		return matrix;
+        int[][] matrix = new int[n][n];
+        
+        int top = 0, down = n - 1; 
+        int left = 0, right = n - 1;
+        int element = 1;
+        int dir = 0;
+        
+        while (top <= down && left <= right) {
+            if (dir == 0) {
+                for (int i = left; i <= right; i++) {
+                    matrix[top][i] = element++;
+                }
+                
+                top++;
+            }
+            else if (dir == 1) {
+                for (int i = top; i <= down; i++) {
+                    matrix[i][right] = element++;
+                }
+                
+                right--;
+            }
+            else if (dir == 2) {
+                for (int i = right; i >= left; i--) {
+                    matrix[down][i] = element++;
+                }
+                
+                down--;
+            }
+            else if (dir == 3) {
+                for (int i = down; i >= top; i--) {
+                    matrix[i][left] = element++;
+                }
+                
+                left++;
+            }
+            
+            dir = (dir + 1) % 4;
+        }
+        
+        return matrix;
     }
 	
 	
-	private static void print(int[][] matrix) {
+	/*private static void print(int[][] matrix) {
 		for(int i=0; i<matrix.length; i++) {
 			System.out.println(Arrays.toString(matrix[i]));
 		}
-	}
+	}*/
 
 }

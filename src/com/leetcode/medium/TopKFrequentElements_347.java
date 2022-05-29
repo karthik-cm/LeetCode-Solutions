@@ -1,6 +1,5 @@
 package com.leetcode.medium;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -25,29 +24,27 @@ public class TopKFrequentElements_347 {
             map.put(n, map.getOrDefault(n, 0) + 1);
         }
         
-        // Sort the map based on decreasing order of values
-        List<Entry<Integer, Integer>> mapList = new LinkedList<>(map.entrySet());
-        Collections.sort(mapList, (e1, e2) -> e2.getValue() - e1.getValue());
         
-        ArrayList<Integer> list = new ArrayList<>();
-        for(Entry<Integer,Integer> entry : mapList){
+        // Sort the map based on decreasing order of values
+        List<Entry<Integer, Integer>> mapEntryList = new LinkedList<>(map.entrySet());
+        Collections.sort(mapEntryList, (e1, e2) -> e2.getValue() - e1.getValue());
+        
+        
+        int[] result = new int[k];
+        int index = 0;
+        
+        for(Entry<Integer,Integer> entry : mapEntryList){
             int key = entry.getKey();
-            // int val = entry.getValue();
             
             if(k > 0){
-                list.add(key);
+                result[index] = key;
+                index++;
                 k--;
             }
             
             if(k == 0){
                 break;
             }
-        }
-        
-        int result[] = new int[list.size()];
-        int index = 0;
-        for(int i : list){
-            result[index++] = i;
         }
         
         return result;

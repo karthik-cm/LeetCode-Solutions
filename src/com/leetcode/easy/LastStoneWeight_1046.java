@@ -1,8 +1,6 @@
 package com.leetcode.easy;
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.PriorityQueue;
 
 public class LastStoneWeight_1046 {
 
@@ -11,41 +9,30 @@ public class LastStoneWeight_1046 {
 		System.out.println(lastStoneWeight(stones));
 	}
 	
+	
+	
+	// Max Heap
+	// T.C = O(NlogN)
+	// S.C = O(N)
 	public static int lastStoneWeight(int[] stones) {
-		List<Integer> list = new LinkedList<>();
-		
-		for(int s : stones) {
-			list.add(s);
-		}
-		
-		Collections.sort(list);
-		
-		return solve(list);
+		// maxHeap
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a,b) -> b - a);
+        
+        for(int stone : stones){
+            maxHeap.add(stone); // O(NlogN)
+        }
+        
+        
+        while(maxHeap.size() > 1){
+            int y = maxHeap.poll();
+            int x = maxHeap.poll();
+            
+            if(x != y){
+                maxHeap.add(y - x);
+            }
+        }
+        
+        return maxHeap.size() == 0 ? 0 : maxHeap.peek();
     }
-
-	private static int solve(List<Integer> list) {
-		if(list.size() == 1) {
-			return list.get(0);
-		}
-		
-		int size = list.size();
-		int lastElement = list.get(size-1);
-		int secondLastElement = list.get(size-2);
-		
-		if((secondLastElement == lastElement) && (size == 2)) {
-			return 0;
-		}
-		
-		list.remove(size-1);
-		list.remove(size-2);
-		
-		if(secondLastElement < lastElement){
-			list.add(lastElement - secondLastElement);
-		}
-		
-		Collections.sort(list);
-		
-		return solve(list);
-	}	
 
 }

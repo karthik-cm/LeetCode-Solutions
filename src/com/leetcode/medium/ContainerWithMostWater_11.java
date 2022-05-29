@@ -11,31 +11,34 @@ public class ContainerWithMostWater_11 {
 	// 1. Brute force approach
 	// Time complexity - O(n^2)   [n*n-1/2]
 	// Space complexity - O(1)
-	public static int maxArea(int[] height, int[] height2) {
-		int maxArea = 0, nextPairMaxArea = 0;
+	/*public static int maxArea(int[] height) {
+		int maxArea = 0;
 		
-		for(int i=0; i<height.length; i++) {
-			for(int j=i+1; j<height.length; j++) {
-				nextPairMaxArea = Math.min(height[i], height[j]) * (j-i);
-				maxArea = Math.max(maxArea, nextPairMaxArea);
+		for(int i = 0; i < height.length; i++) {
+			for(int j = i+1; j < height.length; j++) {
+				maxArea = Math.max(maxArea, Math.min(height[i], height[j]) * (j-i));
 			}
 		}
 		
 		return maxArea;
-	}
+	}*/
 	
 	
 	
-	// 2. Two pointer approach - i, j
-	// Time complexity - O(n) - Single pass
+	// 2. Two pointer approach (Single pass)
+	// Time complexity - O(n)
 	// Space complexity - O(1)
 	public static int maxArea(int[] height) {
-		int maxArea = 0, left = 0, right = height.length-1;
+		int maxArea = 0;
+		
+		int left = 0;
+		int right = height.length - 1;
 		
 		while(left < right) {
-			maxArea = Math.max(maxArea, Math.min(height[left], height[right]) * (right - left));
+			int shorterLine = Math.min(height[left], height[right]);
+			maxArea = Math.max(maxArea, shorterLine * (right - left));
 			
-			if(height[left] < height[right]) {
+			if(shorterLine == height[left]) {
 				left++;
 			}
 			else {
@@ -44,27 +47,7 @@ public class ContainerWithMostWater_11 {
 		}
 		
 		return maxArea;
-    }
+	}
 	
 	
-	
-	
-	
-	
-	/*public static int maxArea(int[] height) {
-		int i = 0, j = height.length-1;
-		int maxArea = Math.min(height[i], height[j]) * (j-i);
-
-		while(i < j){
-			if(height[i] <= height[j])
-				i++;
-			else 
-				j--;
-            
-            maxArea = Math.max(maxArea, Math.min(height[i], height[j]) * (j-i));
-        }
-        
-        return maxArea;
-    }*/
-
 }
